@@ -12,3 +12,4 @@ function addBookToLibrary (author, title, numOfPages, isRead) {
     let newObject = new Book(author, title, numOfPages, isRead)
     myLibrary.push(newObject);
 }
+
