@@ -22,7 +22,7 @@ function displayCard() {
          const bookInfo = document.createElement("div");
          bookInfo.className = "book-card";
          bookInfo.style.height = "120px";
-         bookInfo.style.width = "230px";
+         bookInfo.style.width = "270px";
          bookInfo.style.backgroundColor = "green";
          bookInfo.style.padding = "12px";
          bookInfo.style.borderRadius = "10px";
@@ -36,19 +36,34 @@ function displayCard() {
          const numOfPagesLine =  document.createElement('p');
          numOfPagesLine.textContent = `Pages: ${book.numOfPages}`;
 
-         const isReadLine =  document.createElement('p');
+         const isReadLine =  document.createElement('span');
+         isReadLine.textContent = "Had this been read yet?: "
+
+         const isReadLabel = document.createElement('span');
          if (!book.isRead) {
-            isReadLine.textContent = "Has this been read yet?: No";
+            isReadLabel.textContent = "No";
          }
          else {
-            isReadLine.textContent = "Has this been read yet?: Yes";
+            isReadLabel.textContent = "Yes";
          }
-        
+
+         const isReadToggle= document.createElement('button');
+         isReadToggle.className = "toggleButton";
+         isReadToggle.textContent = "If Read, Click Here to Change Status!";
+
+         isReadToggle.addEventListener('click', () => {
+            book.isRead = !book.isRead;
+            isReadLabel.textContent = book.isRead ? "Yes" : "No";
+         });
+
+
           
          bookInfo.appendChild(titleLine);
          bookInfo.appendChild(authorLine);
          bookInfo.appendChild(numOfPagesLine);
          bookInfo.appendChild(isReadLine);
+         bookInfo.appendChild(isReadLabel);
+         bookInfo.appendChild(isReadToggle);
 
          cardContainer.appendChild(bookInfo);
     }
