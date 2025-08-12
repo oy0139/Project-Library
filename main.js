@@ -23,7 +23,7 @@ function displayCard() {
     for (const book of myLibrary) {
          const bookInfo = document.createElement("div");
          bookInfo.className = "book-card";
-         bookInfo.style.height = "120px";
+         bookInfo.style.height = "170px";
          bookInfo.style.width = "270px";
          bookInfo.style.backgroundColor = "green";
          bookInfo.style.padding = "12px";
@@ -58,6 +58,22 @@ function displayCard() {
             isReadLabel.textContent = book.isRead ? "Yes" : "No";
          });
 
+         const removeButton = document.createElement('button');
+         removeButton.className = "removeButton";
+         removeButton.textContent = "Click to remove";
+
+         bookInfo.setAttribute('data-id', book.id);
+
+         removeButton.addEventListener("click", (event) => {
+            const bookId = event.target.parentElement.getAttribute('data-id');
+            const index = myLibrary.findIndex(book => book.id === bookId);
+
+            if (index !== -1) {
+                myLibrary.splice(index, 1);
+                displayCard();
+                }
+         })
+
 
           
          bookInfo.appendChild(titleLine);
@@ -66,6 +82,7 @@ function displayCard() {
          bookInfo.appendChild(isReadLine);
          bookInfo.appendChild(isReadLabel);
          bookInfo.appendChild(isReadToggle);
+         bookInfo.appendChild(removeButton);
 
          cardContainer.appendChild(bookInfo);
     }

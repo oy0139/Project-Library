@@ -105,7 +105,8 @@ input[type="checkbox"] {
     transition: none;
 }
 
-.toggleButton {
+.toggleButton, .removeButton {
+    margin-bottom: 10px;
     display: block;
     height: 20px;
 }
