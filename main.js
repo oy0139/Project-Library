@@ -13,7 +13,9 @@ function addBookToLibrary (title, author, numOfPages, isRead) {
     myLibrary.push(newObject);
 }
 
-
+Book.prototype.changeReadStatus = function () {
+    this.isRead = !this.isRead;
+}
 function displayCard() {
     const cardContainer = document.querySelector('.card-container');
     cardContainer.innerHTML = '';
@@ -52,7 +54,7 @@ function displayCard() {
          isReadToggle.textContent = "If Read, Click Here to Change Status!";
 
          isReadToggle.addEventListener('click', () => {
-            book.isRead = !book.isRead;
+            book.changeReadStatus();
             isReadLabel.textContent = book.isRead ? "Yes" : "No";
          });
 
